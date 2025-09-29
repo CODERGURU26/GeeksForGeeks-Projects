@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+body{
+    background-color: rgb(253, 238, 238);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container{
+    background-color: white;
+    height: 500px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.counter p{
+    font-size: 30px;
+}
+.title h1{
+    font-size: 30px;
+}
+.counter-btn button{
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin-left: 15px;
+    font-size: 30px;
+}
+
+.counter-btn button:hover{
+    cursor: pointer;
+}
+
+.counter-preview p{
+    font-size: 30px;
+    margin: 10px;
+    margin-top: 20px;
+}
+
