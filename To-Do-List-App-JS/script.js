@@ -1,33 +1,57 @@
+// Select elements
+const form = document.getElementById("todo-form");
+const input = document.getElementById("todo-input");
+const list = document.getElementById("todo-list");
 
+form.addEventListener("submit", function(event) {
+  event.preventDefault();
 
-const form = document.getElementById("todo-form")
-const input = document.getElementById('todo-input')
-const list = document.getElementById("todo-list")
+  const taskText = input.value.trim();
+  if (taskText === "") return;
 
-console.log("Form:" , form)
-console.log("Input:", input)
-console.log("List:", list)
+  // Create task row
+  const li = document.createElement("li");
 
-form.addEventListener("submit", (e)=>{
-    e.preventDefault()
+  // Task content (checkbox + text)
+  const taskContent = document.createElement("div");
+  taskContent.classList.add("task-content");
 
-    const taskContent = input.value.trim()
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
 
-    if(taskContent !== ""){
-        const li = document.createElement('li')
-        li.textContent = taskContent
+  const span = document.createElement("span");
+  span.textContent = taskText;
 
-        const deleteBtn = document.createElement("button")
-        deleteBtn.textContent = "Delete"
-        deleteBtn.style.marginLeft = "10px"
+  taskContent.appendChild(checkbox);
+  taskContent.appendChild(span);
 
-        deleteBtn.addEventListener("click", ()=>{
-            li.remove
-        })
+  // Delete button
+  const delBtn = document.createElement("button");
+  delBtn.textContent = "Delete";
+  delBtn.classList.add("delete-btn");
 
-        li.appendChild(deleteBtn)
-        list.appendChild(li)
-
-        input.value = ""
+  // Checkbox behavior
+  checkbox.addEventListener("change", function () {
+    if (checkbox.checked) {
+      span.style.textDecoration = "line-through";
+      span.style.color = "gray";
+    } else {
+      span.style.textDecoration = "none";
+      span.style.color = "black";
     }
-})
+  });
+
+  // Delete behavior
+  delBtn.addEventListener("click", function () {
+    li.remove();
+  });
+
+  // Build task row
+  li.appendChild(taskContent);
+  li.appendChild(delBtn);
+
+  // Add to list
+  list.appendChild(li);
+
+  input.value = "";
+});
